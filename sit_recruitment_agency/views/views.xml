@@ -1,0 +1,292 @@
+<odoo>
+  <data>
+
+
+    <record model="ir.ui.view" id="sit_recruitment_agencies_customer_list">
+      <field name="name">Customers List</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//page[@name='sales_purchases']" position="after">
+          <page name="recruit_information" string="Recruit Information">
+            <group>
+              <group>
+                <field name="id_number" />
+                <field name="date_of_birth" />
+              </group>
+              <group>
+                <field name="num_dependencies" />
+                <field name="job_position" />
+              </group>
+            </group>
+            <group>
+              <field name="rec_attachment_ids" />
+            </group>    
+          </page>
+          
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sit_recruitment_agencies_customer">
+      <field name="name">Customers</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record model="ir.ui.view" id="sit_recruitment_agencies_agencies_list">
+      <field name="name">Agencies List</field>
+      <field name="model">sit_recruitment_agencies.agencies</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sit_recruitment_agencies_agencies">
+      <field name="name">Agencies</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_supplier':1}</field>
+    </record>
+
+    <record id="sequence_self_service" model="ir.sequence">
+      <field name="name">Self Service</field>
+      <field name="code">self.service</field>
+      <field name="active">TRUE</field>
+      <field name="prefix">SS</field>
+      <field name="padding">6</field>
+      <field name="number_next">1</field>
+      <field name="number_increment">1</field>
+    </record>
+
+    
+    <record model="ir.ui.view" id="sit_recruitment_agencies_recruit_list">
+      <field name="name">Recruit List</field>
+      <field name="model">sit_recruitment_agencies.request_recruit</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="sit_recruitment_agencies_recruit_form">
+      <field name="name">Request Recruit</field>
+      <field name="model">sit_recruitment_agencies.request_recruit</field>
+      <field eval="1" name="priority"/>
+      <field name="arch" type="xml">
+          <form string="Shift Details">
+            <header>
+              <field name="state" widget="statusbar" statusbar_visible="draft,sent,confirmed"/>
+            </header>
+            <group>
+              <group >
+                <field name="id_code" />
+              </group>
+              <group >
+                <field name="customer_id"/>
+              </group>
+            </group>
+            
+
+
+            <group >
+              <group>
+                <field name="req_template" />
+              </group>
+              <group>
+                <field name="release_date" />
+              </group>
+            </group>
+            <group >
+              <group>
+                <field name="job_type" />
+              </group>
+              <group>
+                <field name="company_id" />
+              </group>
+            </group>
+            <group >
+              <group>
+                <field name="visa_number" />
+              </group>
+              <group attrs="{'invisible': [('customer_id', '==', False)]}">
+                <field name="cus_job" />
+              </group>
+              
+            </group>
+            <group attrs="{'invisible': [('customer_id', '==', False)]}">
+              <group >
+                <field name="cus_id" />
+              </group>
+              <group >
+                <field name="cus_dob" />
+              </group>
+            </group>
+            <group attrs="{'invisible': [('customer_id', '==', False)]}">
+              <group >
+                <field name="cus_mobile" />
+              </group>
+              <group >
+                <field name="cus_email"/>
+              </group>
+            </group>
+
+          </form>
+      </field>
+  </record>
+
+  <record id="sequence_request_recruit" model="ir.sequence">
+      <field name="name">Request Recruit</field>
+      <field name="code">request.recruit</field>
+      <field name="active">TRUE</field>
+      <field name="prefix">RR</field>
+      <field name="padding">6</field>
+      <field name="number_next">1</field>
+      <field name="number_increment">1</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sit_recruitment_agencies_recruit">
+      <field name="name">Request Recruit</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sit_recruitment_agencies.request_recruit</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="sit_recruitment_agencies_mission_list">
+      <field name="name">Mission List</field>
+      <field name="model">sit_recruitment_agencies.mission</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sit_recruitment_agencies_mission">
+      <field name="name">Mission</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sit_recruitment_agencies.mission</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <record model="ir.ui.view" id="sit_recruitment_agencies_traceability_list">
+      <field name="name">Traceability List</field>
+      <field name="model">sit_recruitment_agencies.traceability</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sit_recruitment_agencies_traceability">
+      <field name="name">Traceability</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sit_recruitment_agencies.traceability</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    <!-- Top Main Menu item -->
+    <menuitem 
+      name="Recruitments" 
+      id="sit_recruitment_main_menu" 
+      sequence="0"
+    />
+    
+      <!-- Main Menu categories -->
+      <menuitem 
+        name="Recruit Agencies" 
+        id="sit_recruitment_agencies" 
+        parent="sit_recruitment_main_menu"
+      />
+
+        <!-- Sub Categories -->
+        <menuitem 
+          name="Customers" 
+          id="recruit_agencies_customers" 
+          parent="sit_recruitment_agencies"
+          action="sit_recruitment_agencies_customer"
+        />
+        <menuitem 
+          name="Agencies" 
+          id="recruit_agencies_agencies" 
+          parent="sit_recruitment_agencies"
+          action="sit_recruitment_agencies_agencies"
+        />
+        <menuitem 
+          name="Request Recruit" 
+          id="recruit_agencies_request_recruit" 
+          parent="sit_recruitment_agencies"
+          action="sit_recruitment_agencies_recruit"
+        />
+        <menuitem 
+          name="Mission" 
+          id="recruit_agencies_mission" 
+          parent="sit_recruitment_agencies"
+          action="sit_recruitment_agencies_mission"
+        />
+        <menuitem 
+          name="Traceability" 
+          id="recruit_agencies_traceability" 
+          parent="sit_recruitment_agencies"
+          action="sit_recruitment_agencies_traceability"
+        />
+
+
+    <menuitem 
+      name="Recruitments" 
+      id="sit_recruitment_recruitments" 
+      parent="sit_recruitment_main_menu"
+    />
+    <menuitem 
+      name="Reporting" 
+      id="sit_recruitment_reporting" 
+      parent="sit_recruitment_main_menu"
+    />
+    <menuitem 
+      name="Configuration" 
+      id="sit_recruitment_config" 
+      parent="sit_recruitment_main_menu"
+    />
+    
+    <!-- actions -->
+    <!-- <menuitem 
+      name="List" 
+      id="sit_recruitment_agency.menu_1_list" 
+      parent="sit_recruitment_agency.menu_1"
+      action="sit_recruitment_agency.action_window"
+    />
+    <menuitem 
+      name="Server to list" 
+      id="sit_recruitment_agency" 
+      parent="sit_recruitment_agency.menu_2"
+      action="sit_recruitment_agency.action_server"
+    /> -->
+    
+  </data>
+</odoo>
